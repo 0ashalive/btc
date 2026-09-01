@@ -4,12 +4,13 @@
 nginx
 
 # Configuration
-LOGO_URL="https://raw.githubusercontent.com/0ashalive/btc/main/logo.png"
+LOGO_URL="https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO/main/logo.png"
 PLAYLIST_FILE="/start/playlist.txt"
 TEXT_FILE="/start/text.txt"
 
-# Protocol Whitelist & Auto-Scaling Filter Complex
+# Run FFmpeg with Reconnect flags
 ffmpeg -re -protocol_whitelist file,http,https,tcp,tls,crypto \
+  -reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5 \
   -f concat -safe 0 -stream_loop -1 -i "$PLAYLIST_FILE" -i "$LOGO_URL" \
   -filter_complex \
   "[0:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,fps=30[scaled_v]; \
