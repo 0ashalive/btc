@@ -20,7 +20,7 @@ ffmpeg -re -protocol_whitelist file,http,https,tcp,tls,crypto,hls \
   -f concat -safe 0 -stream_loop -1 -i "$TEMP_PLAYLIST" -i "$LOGO_URL" \
   -filter_complex \
   "[0:v]scale=854:480,fps=30[scaled_v]; \
-   [1:v]scale=300:-1[scaled_logo]; \
+   [1:v]scale=250:-1[scaled_logo]; \
    [scaled_v][scaled_logo]overlay=main_w-overlay_w-15:15[v1]; \
    [v1]drawbox=y=ih-60:color=black@0.7:width=iw:height=60:t=fill[v2]; \
    [v2]drawtext=textfile='$TEXT_FILE':reload=1:fontcolor=white:fontsize=22:y=h-42:x='w-mod(t*90\,w+tw)':fontfile=/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf[outv]" \
