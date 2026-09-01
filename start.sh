@@ -1,17 +1,14 @@
 #!/bin/bash
 
-# Start Nginx
+# Nginx চালু করা
 nginx
 
-# Configuration
 LOGO_URL="https://raw.githubusercontent.com/0ashalive/btc/main/logo.png"
-PLAYLIST_FILE="/start/playlist.txt"
 TEXT_FILE="/start/text.txt"
 
-# Run FFmpeg with Reconnect flags
-ffmpeg -re -protocol_whitelist file,http,https,tcp,tls,crypto \
-  -reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5 \
-  -f concat -safe 0 -stream_loop -1 -i "$PLAYLIST_FILE" -i "$LOGO_URL" \
+# Python Output কে সরাসরি FFmpeg Input এ পাইপ করা
+python3 /start/playlist.py | ffmpeg -re -protocol_whitelist pipe,file,http,https,tcp,tls,crypto \
+  -f concat -safe 0 -i pipe:0 -i "$LOGO_URL" \
   -filter_complex \
   "[0:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,fps=30[scaled_v]; \
    [scaled_v][1:v]overlay=main_w-overlay_w-20:20[v1]; \
@@ -21,4 +18,3 @@ ffmpeg -re -protocol_whitelist file,http,https,tcp,tls,crypto \
   -c:v libx264 -preset ultrafast -b:v 2000k -c:a aac -b:a 128k \
   -f hls -hls_time 6 -hls_list_size 5 -hls_flags delete_segments \
   /var/www/hls/live.m3u8
-  
