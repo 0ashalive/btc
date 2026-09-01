@@ -4,7 +4,7 @@
 nginx
 
 # Configuration
-LOGO_URL="https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO/main/logo.png"
+LOGO_URL="https://raw.githubusercontent.com/0ashalive/btc/main/logo.png"
 PLAYLIST_FILE="/start/playlist.txt"
 TEXT_FILE="/start/text.txt"
 
