@@ -5,8 +5,8 @@ nginx
 
 # ইনপুট অ্যাসেট
 PLAYLIST_FILE="/start/playlist.txt"
-LOGO_URL="https://example.com/logo.png"
-SCROLL_TEXT="BREAKING NEWS: Streaming multiple videos in an endless loop with FFmpeg..."
+LOGO_URL="https://i.ibb.co.com/5hpHVM0D/remove-photos-removed-background-2.png"
+SCROLL_TEXT="BREAKING NEWS: WATCH FREE MOVIES DOWNLOAD ASHAOTT APP , FREE LIVE TV CHANNEL"
 
 # FFmpeg Multiple Link Concat + Overlay + Scrolling Text Command
 ffmpeg -re -f concat -safe 0 -stream_loop -1 -i "$PLAYLIST_FILE" -i "$LOGO_URL" \
