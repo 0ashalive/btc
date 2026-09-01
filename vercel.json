@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/master/index.m3u8",
-      "destination": "index.py"
+      "destination": "/api/index.py"
     }
   ]
 }
