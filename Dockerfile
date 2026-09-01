@@ -1,11 +1,11 @@
 FROM alpine:latest
 
-# Python3 সহ প্রয়োজনীয় সব প্যাকেজ ইন্সটল
-RUN apk add --no-cache ffmpeg nginx bash font-dejavu python3
+# Added jq for direct JSON parsing
+RUN apk add --no-cache ffmpeg nginx bash font-dejavu jq
 
 RUN mkdir -p /var/www/hls /start
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY playlist.py /start/playlist.py
+COPY list.json /start/list.json
 COPY text.txt /start/text.txt
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
