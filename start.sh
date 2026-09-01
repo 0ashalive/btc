@@ -15,7 +15,7 @@ TEMP_PLAYLIST="/tmp/generated_playlist.txt"
 # Extract URLs directly from list.json using jq and build FFmpeg playlist format
 jq -r '.[] | "file '\''" + . + "'\''"' "$JSON_FILE" > "$TEMP_PLAYLIST"
 
-# Run Stream Pipeline
+# Run Stream Pipeline with Top-Right Corner Logo Alignment
 ffmpeg -re -protocol_whitelist file,http,https,tcp,tls,crypto \
   -f concat -safe 0 -stream_loop -1 -i "$TEMP_PLAYLIST" -i "$LOGO_URL" \
   -filter_complex \
